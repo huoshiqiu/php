@@ -1,0 +1,102 @@
+
+
+/*<b>处理表单提交的数据</b><hr />
+<?php
+if (isset($_POST['submit']))
+{
+  echo "<b>接收到的数据</b><br /><br />";
+	echo "你好".$_POST['name']."。";
+	echo "<br />";
+	echo "你现在有".$_POST['age']."岁";
+	die();
+}
+?>
+
+<b>表单内容</b>
+<form action="2.php" method="post">
+  姓名：
+ <input type="text" name="name" /><br />
+ 年龄：
+ <input type="text" name="age" /><br />
+
+ <input type="submit" name="submit" value="提交" />
+
+</form>
+
+<b>处理表单提交的数据</b><hr />
+<?php 
+if (isset($_FILES['userfile']))
+{
+	$uploaddir='upload/';
+	$uploadfile=$uploaddir.basename($_FILES['userfile']['name']);
+	
+	echo '<pre>';
+	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)){
+		echo "文件上传成功!\n";
+	}else{
+		echo "文件上传失败!\n";
+	}
+	
+	echo "这里是上传的一些信息\n";
+	print_r($_FILES);
+	print "</pre>";
+	die();
+}
+
+
+?>
+
+<b>上传的表单</b>
+<!-- 表单中的encype属，必须和以下定义的一致 -->
+<form enctype="multipart/form-data" action="2.php" method="post">
+<input type="hidden" name="MAX_FILE_SIZE" value="30000"/>
+
+上传的文件：
+<input name="userfile" type="file" />
+<input type="submit" value="上传文件" />
+</form>
+*/
+<?php 
+if (isset($_POST['submit'])){
+	session_start();
+	$_SESSION['season']=$_POST['season'];
+	header("Location:2.php");
+}
+
+?>
+<b>储存会话</b>
+<hr/>
+选择需要的数据：
+<form id="form1" name="form1" method="post" action="">
+ <select name="season" id="season">
+   <option value="春天">春天</option>
+   <option value="下图">夏天</option>
+   <option value="秋天">秋天</option>
+   <option value="冬天">冬天</option>
+ </select>
+ <br /><br />
+ <input type="submit" name="submit" id="submit" value="post" />
+</form>
+
+<?php 
+session_start();
+$season=$_SESSION['season'];
+echo "<b>读取会话<b><hr />";
+switch ($season){
+	case '春天':
+		echo "现在春意黯然是";
+		break;
+	case '夏天':
+		echo "现在热情肆意是";
+		break;
+	case '秋天':
+		echo "现在丰收果实是";
+		break;
+	case '冬天':
+		echo "现在白雪一一是";
+		break;
+	default:
+		echo "现在神马都木有";
+
+}
+?>
