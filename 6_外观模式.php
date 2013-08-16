@@ -86,3 +86,4 @@ class WebServiceFacade
      print WebServiceFacade::makeXMLcall($cd);
 
 
+?>
