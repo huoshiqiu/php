@@ -62,8 +62,8 @@ class userDAO extends baseDAO
      }
 }
 
-     define('DB_USER','user');
-	 define('DB_PASS','pass');
+         define('DB_USER','user');
+         define('DB_PASS','pass');
 	 define('DB_HOST','localhost');
 	 define('DB_DATABASE','database');
 	 
@@ -76,4 +76,4 @@ class userDAO extends baseDAO
 	 $allAarons=$user->getUserByFirstName('aaron');
 	 
 	 
-}
+?>
